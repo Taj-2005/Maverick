@@ -2,8 +2,14 @@ import { images } from '@/constants/images';
 import React from 'react';
 import { Image, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { useRouter } from 'expo-router';
 
 export default function HomeScreenForAIApp() {
+  const router = useRouter();
+
+  const handlePress = () => {
+    router.push('/properties');
+  };
   return (
     <React.Fragment>
       <SafeAreaView style={styles.safeArea} className="flex-1 bg-gray-50">
@@ -60,6 +66,7 @@ export default function HomeScreenForAIApp() {
                 iconColor="#F59E0B"
                 bgColor="bg-yellow-50"
                 title="Dimensions"
+                onPress={handlePress}
               />
               <CategoryCard
                 iconName="tree"
@@ -67,6 +74,7 @@ export default function HomeScreenForAIApp() {
                 iconColor="#A855F7"
                 bgColor="bg-purple-50"
                 title="Landscape"
+                onPress={handlePress}
               />
               <CategoryCard
                 iconName="warehouse"
@@ -74,6 +82,7 @@ export default function HomeScreenForAIApp() {
                 iconColor="#EC4899"
                 bgColor="bg-pink-50"
                 title="Structural"
+                onPress={handlePress}
               />
               <CategoryCard
                 iconName="solar-panel"
@@ -81,6 +90,7 @@ export default function HomeScreenForAIApp() {
                 iconColor="#EF4444"
                 bgColor="bg-red-50"
                 title="Energy"
+                onPress={handlePress}
               />
               <CategoryCard
                 iconName="water"
@@ -88,6 +98,7 @@ export default function HomeScreenForAIApp() {
                 iconColor="#3B82F6"
                 bgColor="bg-blue-50"
                 title="Water Systems"
+                onPress={handlePress}
               />
               <CategoryCard
                 iconName="clipboard-list"
@@ -95,6 +106,7 @@ export default function HomeScreenForAIApp() {
                 iconColor="#10B981"
                 bgColor="bg-green-50"
                 title="Compliance"
+                onPress={handlePress}
               />
             </View>
           </View>
@@ -118,10 +130,20 @@ type CategoryCardProps = {
   iconColor: string;
   bgColor: string;
   title: string;
+  onPress?: () => void;
 };
 
-const CategoryCard = ({ iconName, iconType, iconColor, bgColor, title }: CategoryCardProps) => (
+const CategoryCard = ({
+  iconName,
+  iconType,
+  iconColor,
+  bgColor,
+  title,
+  onPress,
+}: CategoryCardProps) => (
   <TouchableOpacity
+    onPress={onPress}
+    activeOpacity={0.7}
     className={`w-[48%] ${bgColor} p-4 rounded-xl mb-4 items-center justify-center shadow-sm`}
     style={{ aspectRatio: 1 }}
   >
@@ -129,6 +151,7 @@ const CategoryCard = ({ iconName, iconType, iconColor, bgColor, title }: Categor
     <Text className="mt-3 text-lg font-semibold text-gray-800 text-center">{title}</Text>
   </TouchableOpacity>
 );
+
 
 type NavItemProps = {
   iconName: string;

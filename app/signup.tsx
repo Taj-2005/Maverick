@@ -11,7 +11,7 @@ export default function SignupScreen() {
   const router = useRouter();
 
   const handleLogin = () => {
-    router.push("/splash");
+    router.push("/home");
   };
 
   const handleForgotPassword = () => {
